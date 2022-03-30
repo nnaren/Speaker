@@ -6,7 +6,8 @@
 #define SPEEKER_INHERIT_H
 #include <vector>
 using namespace std;
-
+// 2继承
+namespace method2 {
 struct Value {
     // implements
 };
@@ -14,7 +15,7 @@ struct Info {
     // implements
 };
 
-// 2继承
+
 // 基本类型
 struct Getter{
     virtual Info Get(vector<Info> &) = 0;
@@ -73,4 +74,15 @@ CreateSpeaker({/* implements*/ }, CreateGetter(3));
 CreateSpeaker({/* implements*/ }, CreateGetter(Value()));
 CreateSpeaker({/* implements*/ }, CreateGetter(Info()));
 
+
+// 改进3：模板 + 继承
+template<typename GetterInfo>
+Speaker CreateSpeaker(vector<Info>& infos, GetterInfo & i) {
+    Getter* getter = CreateGetter(i);  //2 转方案2， 一般不转方案3 、4
+}
+CreateSpeaker({/* implements*/ }, CreateGetter(3));
+CreateSpeaker({/* implements*/ }, CreateGetter(Value()));
+CreateSpeaker({/* implements*/ }, CreateGetter(Info()));
+
+}
 #endif //SPEEKER_INHERIT_H

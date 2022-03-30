@@ -11,8 +11,9 @@ struct Value {
 struct Info {
     // implements
 };
-
 // 3 类型擦除
+namespace method3 {
+
 class GetterImpl {
     virtual ~GetterImpl() {}
     virtual Info Get(vector<Info> &) = 0;
@@ -20,12 +21,21 @@ class GetterImpl {
 
 struct ValueGetter : public GetterImpl{
     ValueGetter(int t) {}
+    virtual Info Get(vector<Info> &) {
+
+    }
 };
 struct IndexGetter : public GetterImpl{
     IndexGetter(Value t) {}
+    virtual Info Get(vector<Info> &) {
+
+    }
 };
 struct InfoGetter  : public GetterImpl{
     InfoGetter(Info t) {}
+    virtual Info Get(vector<Info> &) {
+
+    }
 };
 
 
@@ -56,10 +66,12 @@ public:
 private:
     GetterImpl * impl;
 };
-Speaker CreateSpeaker(vector<Info>& infos, Getter& I);
-CreateSpeaker({/* impliments*/ }, Getter(3));
-CreateSpeaker({/* impliments*/ }, Getter(Value()));
-CreateSpeaker({/* impliments*/ }, Getter(Info()));
-
+Speaker CreateSpeaker(vector<Info>& infos, Getter& I) {
+    I.Get();
+}
+CreateSpeaker({/* implements*/ }, Getter(3));
+CreateSpeaker({/* implements*/ }, Getter(Value()));
+CreateSpeaker({/* implements*/ }, Getter(Info()));
+}
 
 #endif //SPEEKER_EREASURE_H
